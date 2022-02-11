@@ -5,7 +5,6 @@ import memoize from "lodash.memoize";
 import reduce from "lodash.reduce";
 import startsWith from "lodash.startswith";
 import classNames from "classnames";
-import { TextField } from "@material-ui/core";
 import "./utils/prototypes";
 
 import CountryData from "./CountryData.js";
@@ -1227,6 +1226,7 @@ class PhoneInput extends React.Component {
       [this.props.buttonClass]: true,
     });
     const inputFlagClasses = `flag ${selectedCountry && selectedCountry.iso2}`;
+    const MuiComponent = this.props.component
 
     return (
       <div
@@ -1238,7 +1238,7 @@ class PhoneInput extends React.Component {
         {errorMessage && (
           <div className="invalid-number-message">{errorMessage}</div>
         )}
-        <TextField
+        <MuiComponent
           className={inputClasses}
           style={this.props.inputStyle}
           onChange={this.handleInput}

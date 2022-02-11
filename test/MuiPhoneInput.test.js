@@ -1,5 +1,6 @@
 import { render, fireEvent, cleanup } from "react-testing-library";
 import React from "react";
+import TextField from "@mui/material/TextField";
 import PhoneInput from "../src";
 
 afterEach(cleanup);
@@ -7,7 +8,7 @@ afterEach(cleanup);
 describe("<PhoneInput /> countries props", () => {
   test('has not "us" country in the dropdown', () => {
     const { container: phoneInput } = render(
-      <PhoneInput excludeCountries={["us"]} />
+      <PhoneInput component={TextField} excludeCountries={["us"]} />
     );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
@@ -21,7 +22,7 @@ describe("<PhoneInput /> countries props", () => {
 
   test('has only "us" country in the dropdown', () => {
     const { container: phoneInput } = render(
-      <PhoneInput onlyCountries={["us"]} />
+      <PhoneInput component={TextField} onlyCountries={["us"]} />
     );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
@@ -35,7 +36,7 @@ describe("<PhoneInput /> countries props", () => {
 
   test('has "us" in the preferred countries section', () => {
     const { container: phoneInput } = render(
-      <PhoneInput preferredCountries={["us"]} />
+      <PhoneInput component={TextField} preferredCountries={["us"]} />
     );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
@@ -47,7 +48,9 @@ describe("<PhoneInput /> countries props", () => {
 
 describe("<PhoneInput /> main props", () => {
   test('has "us" as the default/highlighted country', () => {
-    const { container: phoneInput } = render(<PhoneInput country="us" />);
+    const { container: phoneInput } = render(
+      <PhoneInput component={TextField} country="us" />
+    );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
     expect(
@@ -60,7 +63,7 @@ describe("<PhoneInput /> main props", () => {
 
   test("receive formatted value", () => {
     const { container: phoneInput } = render(
-      <PhoneInput value="+3802343252" />
+      <PhoneInput component={TextField} value="+3802343252" />
     );
     expect(phoneInput.querySelector("input").value).toBe("+380 (23) 432 52");
   });
@@ -70,7 +73,7 @@ describe("<PhoneInput /> event handlers", () => {
   test("onChange is called with unformatted value and country object as callback arguments", () => {
     const mockFn = jest.fn();
     const { container: phoneInput } = render(
-      <PhoneInput country={"us"} onChange={mockFn} />
+      <PhoneInput component={TextField} country={"us"} onChange={mockFn} />
     );
 
     fireEvent.change(phoneInput.querySelector("input"), {
@@ -93,14 +96,16 @@ describe("<PhoneInput /> event handlers", () => {
 describe("<PhoneInput /> other props", () => {
   test("pass inputProps into the input", () => {
     const { container: phoneInput } = render(
-      <PhoneInput inputProps={{ name: "phone" }} />
+      <PhoneInput component={TextField} inputProps={{ name: "phone" }} />
     );
 
     expect(phoneInput.querySelector("input").name).toBe("phone");
   });
 
   test("filter european countries with the regions={'europe'} prop", () => {
-    const { container: phoneInput } = render(<PhoneInput regions={"europe"} />);
+    const { container: phoneInput } = render(
+      <PhoneInput component={TextField} regions={"europe"} />
+    );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
     expect(
@@ -120,6 +125,7 @@ describe("<PhoneInput /> other props", () => {
   test('localize countries labels using "localization" prop', () => {
     const { container: phoneInput } = render(
       <PhoneInput
+        component={TextField}
         onlyCountries={["de", "es"]}
         localization={{ Germany: "Deutschland", Spain: "España" }}
       />
@@ -141,6 +147,7 @@ describe("<PhoneInput /> other props", () => {
   test('render custom mask with the "masks" prop', () => {
     const { container: phoneInput } = render(
       <PhoneInput
+        component={TextField}
         country="fr"
         onlyCountries={["fr"]}
         masks={{ fr: "(...) ..-..-.." }}
@@ -153,7 +160,9 @@ describe("<PhoneInput /> other props", () => {
   });
 
   test("not renders area codes with disableAreaCodes", () => {
-    const { container: phoneInput } = render(<PhoneInput disableAreaCodes />);
+    const { container: phoneInput } = render(
+      <PhoneInput component={TextField} disableAreaCodes />
+    );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
     expect(
@@ -165,7 +174,9 @@ describe("<PhoneInput /> other props", () => {
   });
 
   test("search correct country via search field", () => {
-    const { container: phoneInput } = render(<PhoneInput enableSearch />);
+    const { container: phoneInput } = render(
+      <PhoneInput component={TextField} enableSearch />
+    );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
     fireEvent.change(phoneInput.querySelector(".search-box"), {
@@ -180,7 +191,9 @@ describe("<PhoneInput /> other props", () => {
   });
 
   test('search "undefined" string returns no non-matching results', () => {
-    const { container: phoneInput } = render(<PhoneInput enableSearch />);
+    const { container: phoneInput } = render(
+      <PhoneInput component={TextField} enableSearch />
+    );
 
     fireEvent.click(phoneInput.querySelector(".selected-flag"));
     fireEvent.change(phoneInput.querySelector(".search-box"), {
@@ -193,14 +206,14 @@ describe("<PhoneInput /> other props", () => {
 describe("correct value update", () => {
   test("should rerender without crashing", () => {
     const { container: phoneInput, rerender } = render(
-      <PhoneInput value={undefined} />
+      <PhoneInput component={TextField} value={undefined} />
     );
 
-    rerender(<PhoneInput value="+3802343252" />);
+    rerender(<PhoneInput component={TextField} value="+3802343252" />);
 
-    rerender(<PhoneInput value="" />);
+    rerender(<PhoneInput component={TextField} value="" />);
 
-    rerender(<PhoneInput value={null} />);
+    rerender(<PhoneInput component={TextField} value={null} />);
 
     expect(phoneInput.querySelector(".selected-flag").children.length).toBe(1);
     expect(
@@ -210,12 +223,12 @@ describe("correct value update", () => {
 
   test("should rerender country without crashing", () => {
     const { container: phoneInput, rerender } = render(
-      <PhoneInput country={undefined} />
+      <PhoneInput component={TextField} country={undefined} />
     );
 
-    rerender(<PhoneInput country="us" />);
+    rerender(<PhoneInput component={TextField} country="us" />);
 
-    rerender(<PhoneInput country="es" />);
+    rerender(<PhoneInput component={TextField} country="es" />);
 
     expect(phoneInput.querySelector(".selected-flag").children.length).toBe(1);
     expect(
@@ -224,9 +237,11 @@ describe("correct value update", () => {
   });
 
   it("renders one prefix when updated from empty value", () => {
-    const { container: phoneInput, rerender } = render(<PhoneInput value="" />);
+    const { container: phoneInput, rerender } = render(
+      <PhoneInput component={TextField} value="" />
+    );
 
-    rerender(<PhoneInput value="+49 1701 601234" />);
+    rerender(<PhoneInput component={TextField} value="+49 1701 601234" />);
 
     expect(phoneInput.querySelector("input").value).toBe("+49 1701 601234");
   });
