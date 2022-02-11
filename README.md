@@ -1,5 +1,5 @@
 
-# material-ui-phone-number
+# phone-number-material-ui
 
 Highly customizable phone input component with auto formatting. Based on the wonderful `react-phone-input-2` package.
 
@@ -13,11 +13,11 @@ Uses `@material-ui/core/TextField` for rendering the phone input
 
 ## Installation
 ```shell-script
-npm install material-ui-phone-number --save
+npm install phone-number-material-ui --save
 
 or
 
-yarn add material-ui-phone-number
+yarn add phone-number-material-ui
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ Mandatory props: `value` and `onChange` for controlling field; `component`, idea
 
 ```jsx
 import React from 'react';
-import PhoneInput from 'material-ui--phone-input';
+import PhoneInput from 'phone-number-material-ui';
 import { TextField, withStyles } from '@material-ui/core';
 
 const styles = theme => ({
@@ -188,7 +188,7 @@ export default withStyles(styles)(PhoneField);
 ```
 
 ### Contents
-- [material-ui-phone-number](#material-ui-phone-number)
+- [phone-number-material-ui](#phone-number-material-ui)
     - [Look](#look)
   - [Installation](#installation)
   - [Usage](#usage)

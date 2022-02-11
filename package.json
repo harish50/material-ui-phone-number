@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-phone-input",
+  "name": "phone-number-material-ui",
   "description": "A material-ui react component to format phone numbers",
   "version": "1.0.0",
   "main": "lib/lib.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/harish50/material-ui-phone-input"
+    "url": "https://github.com/harish50/phone-number-material-ui"
   },
   "keywords": [
     "material",
@@ -41,9 +41,9 @@
   "author": "Harish S <sreeramappaharish@gmail.com> (https://github.com/harish50)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/harish50/material-ui-phone-input/issues"
+    "url": "https://github.com/harish50/phone-number-material-ui/issues"
   },
-  "homepage": "https://github.com/harish50/material-ui-phone-input",
+  "homepage": "https://github.com/harish50/phone-number-material-ui",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/test/__mocks__/fileMock.js",
