@@ -1296,9 +1296,7 @@ class PhoneInput extends React.Component {
               </div>
             </div>
           )}
-          <div ref={(el) => (this.dropdownContainerRef = el)}>
-            {showDropdown && this.getCountryDropdownList()}
-          </div>
+          {showDropdown && this.getCountryDropdownList()}
         </div>
       </div>
     );
