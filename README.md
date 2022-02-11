@@ -1,11 +1,15 @@
 
 # material-ui-phone-number
 
-Highly customizable phone input component with auto formatting.
+Highly customizable phone input component with auto formatting. Based on the wonderful `react-phone-input-2` package.
 
 ### Look
 
 ![alt tag](https://i.imgur.com/go91R0F.png)
+
+
+Uses `@material-ui/core/TextField` for rendering the phone input
+
 
 ## Installation
 ```shell-script
